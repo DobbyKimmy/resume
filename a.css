@@ -75,7 +75,7 @@ hr{
 }
 /*任务11 代码部分*/
 .banner{
-    background-image: url("./img/wallhaven-starry2.jpg");
+    background-image: url("./img/wallhaven-632454.jpg");
     width: 100%;
     height: 515px;
     background-position: center center;
@@ -156,25 +156,185 @@ hr{
 .userCard footer.media{
     background: #E6686A;
     text-align: center;
-    text-align: center;
+    height: 80px;
 }
 .userCard footer.media a{
     display: inline-block;
     /*border-radius:50%;的作用为使链接呈圆形包裹住svg*/
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    padding: 16px 20px;
+    padding: 10px 10px;
+    margin: 13px 10px 0 10px;
 }
 .userCard footer.media a:hover{
     background: #CF5D5F;
 }
 .userCard svg{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     fill: white;
     padding: 5px  0;
     /*vertical-align:top;解决了图标偏上的问题*/
     vertical-align: top;
+}
+/*2019-04-14*/
+body main{
+    margin-top: -350px;
+}
+.userCard{
+    /*www.cssmatic.com or Google box shadow generator*/
+    box-shadow: 0px 2px 9px -1px rgba(0,0,0,0.6);
+}
+.wrapperDownloadResume{
+    margin: 32px 0;
+    text-align: center;
+}
+.downloadResume{
+    color: #3D4451;
+    font-family: Arial;
+    display: inline-block;
+    padding: 18px 55px;
+    border: 1px solid #CBCDCF;
+    border-radius: 5px;
+    /*渐变*/
+    transition: box-shadow 0.5s;
+}
+.downloadResume:hover{
+    box-shadow: 0px 4px 18px -1px rgba(0,0,0,0.5);
+}
+.selfIntroduction{
+    line-height: 1.5em;
+    font-size: 18px;
+    font-family: 新宋体;
+    margin: 0 auto;
+    max-width: 940px;
+    text-align: center;
+}
+.skills{
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: normal;
+}
+.skills h2{
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #3D4451;
+    margin-bottom: 30px;
+}
+.skills ol{
+    background: #FFFFFF;
+    box-shadow: 0px 2px 9px -1px rgba(0,0,0,0.6);
+    padding: 40px;
+}
+.skills ol li{
+    width: 47%;
+    float: left;
+    margin-bottom: 35px;
+}
+.skills ol li:nth-child(even){
+    float: right;
+}
+.skills ol li:nth-child(5){
+    margin-bottom: 0;
+}
+.skills ol li:nth-child(6){
+    margin-bottom: 0;
+}
+.skills ol li h3{
+    font-size: 14px;
+    line-height: 1.1;
+    padding-right: 40px;
+    color: #3D4451;
+    margin-bottom: 5px;
+}
+ol{
+    list-style: none;
+}
+.progressBar{
+    height: 5px;
+    background-color: #FAEAEA;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+.progressBar .progress{
+    background-color: #E8676B;
+    width: 70%;
+    height: 5px;
+    border-radius: 3px;
+}
+.portfolio{
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+.portfolio h2{
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #3D4451;
+    margin-bottom: 30px;
+}
+.portfolio nav{
+    display: inline-block;
+}
+.portfolio nav ol{
+    margin-bottom: 8px;
+}
+.portfolio nav ol li{
+    margin-left: 50px;
+    float: left;
+    cursor: pointer;
+}
+.portfolio nav ol li:nth-child(1){
+    margin-left: 0;
+}
+.portfolio .bar{
+    height: 5px;
+    background: #FFFFFF;
+    border-radius: 3px;
+}
+.portfolio .bar .inner-bar{
+    height: 100%;
+    background: #E8676B;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+.portfolio .bar.state-1>.inner-bar{
+    margin-left: 0;
+    width: 13%;
+}
+.portfolio .bar.state-2>.inner-bar{
+    margin-left: 30%;
+    width: 40%;
+}
+.portfolio .bar.state-3>.inner-bar{
+    margin-left: 86%;
+    width: 14%;
+}
+.works{
+    position: relative;
+    height: 576px;
+    margin-top: 20px;
+}
+.big,.small1,.small2{
+    position: absolute;
+}
+.small1{
+    left: 644px;
+    top: 0;
+}
+.small2{
+    left: 644px;
+    top: 298px;
 }

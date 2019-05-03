@@ -14,6 +14,7 @@ ul,ol{list-style: none}
 .topNavBar nav>ul{margin: 0px;padding: 0px;list-style: none;}
 .topNavBar nav>ul>li{float: left;margin-left: 17px;margin-right: 17px;
     position: relative;}
+.topNavBar nav>ul>li:hover{cursor: pointer}
 .topNavBar nav>ul>li>a{font-size: 12px;color: inherit;font-weight: bold;padding-top: 5px;padding-bottom: 5px;border-bottom: 3px solid transparent;border-top: 3px solid transparent;display: block;position: relative;}
 .topNavBar nav>ul>li>ul{display: none;}
 .topNavBar nav>ul>li>ul.subMenu{background: #FFFFFF;color: #3D4451;animation: subMenuSlide 0.3s;box-shadow: 0 0 5px rgba(0,0,0,0.5);}

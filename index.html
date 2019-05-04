@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <title>JRH Resume</title>
     <link rel="stylesheet" href="./main.css">
-    <script src="//at.alicdn.com/t/font_1128654_mkrsfkjhwq7.js"></script>
     <link rel="stylesheet" href="./loading.css">
+    <script src="//at.alicdn.com/t/font_1128654_mkrsfkjhwq7.js"></script>
+    <style type="text/css">
+        .icon {
+            width: 1em; height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <!--loading-->
-    <div id="loadingWrapper" class="loadingWrapper active">
+    <div id="loading" class="loadingWrapper  active">
         <div class="loading"></div>
     </div>
     <!--导航栏-->
@@ -18,7 +26,7 @@
             <a class="logo" href="#">
                 <span class="rs">RS</span><span class="card">card</span>
             </a>
-            <nav class="menu">
+            <nav>
                 <ul class="clearfix">
                     <li>
                         <a href="#about">关于</a>
@@ -28,7 +36,7 @@
                     </li>
                     <li>
                         <a href="#works">作品</a>
-                        <ul class="subMenu">
+                        <ul>
                             <li>作品1</li>
                             <li>作品2</li>
                             <li>作品3</li>
@@ -36,7 +44,7 @@
                     </li>
                     <li>
                         <a href="#">博客</a>
-                        <ul class="subMenu">
+                        <ul>
                             <li>博客1</li>
                             <li>博客2</li>
                             <li>博客3</li>
@@ -60,7 +68,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div id="about" class="userCard">
+        <div special id="about" class="userCard">
             <div class="pictureAndText clearfix">
                 <div class="picture"><img src="./img/avatar.jpg" alt="头像" width="299" height="347"></div>
                 <div class="text">
@@ -113,7 +121,7 @@
             资深段子手
         </p>
     </main>
-    <section id="skills" class="skills">
+    <section special id="skills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -154,7 +162,7 @@
             </li>
         </ol>
     </section>
-    <section id="works" class="portfolio">
+    <section special id="works" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -189,40 +197,84 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.3.0/Tween.min.js"></script>
     <script>
-        // 为了能够看到loading的效果，只好设置了此功能
+        // loading动画
         window.setTimeout(function () {
-            loadingWrapper.classList.remove('active');
-        },2000);
-        // topNavBar transform
+            loading.classList.remove('active')
+        },1000)
+        // 让about在刚打开页面的时候就出现upSlide效果
+        window.setTimeout(f,1500);
+        var topNavBar = document.getElementById('topNavBar');
+        // upSlide
+        let specials = document.querySelectorAll('[special]');
+        for(let i=0;i<specials.length;i++){
+            specials[i].classList.add('upSlide');
+        }
         window.onscroll = function () {
             if(window.scrollY>0){
                 topNavBar.classList.add('active');
             }else{
                 topNavBar.classList.remove('active');
             }
+            f();
         }
-        let liTags = document.querySelectorAll('nav.menu>ul>li');
+       function f() {
+            let minIndex = 0
+            for(let i=1;i<specials.length;i++){
+                if(Math.abs(specials[minIndex].offsetTop-window.scrollY)>Math.abs(specials[i].offsetTop-window.scrollY)){
+                    minIndex = i;
+                }
+            }
+            // specials[minIndex]为当前屏幕"最近的元素"
+            specials[minIndex].classList.remove('upSlide');
+            let aTag = document.querySelector('a[href="#'+specials[minIndex].id+'"]');
+            let liTags = aTag.parentNode.parentNode.children;
+            for(let i=0;i<liTags.length;i++){
+                liTags[i].classList.remove('highlight');
+            }
+            aTag.parentNode.classList.add('highlight');
+        }
+        let liTags = document.querySelectorAll('nav>ul>li');
         for(let i=0;i<liTags.length;i++){
             liTags[i].onmouseenter = function (mouseEnter) {
-               let li = mouseEnter.currentTarget;
-               li.classList.add('active');
+                let li = mouseEnter.currentTarget
+                li.classList.add('active');
             }
             liTags[i].onmouseleave = function (mouseLeave) {
                 let li = mouseLeave.currentTarget;
                 li.classList.remove('active');
             }
         }
-        let aTags = document.querySelectorAll('nav.menu>ul>li>a');
+        let aTags = document.querySelectorAll('nav>ul>li>a');
         for(let i=0;i<aTags.length;i++){
             aTags[i].onclick = function (click) {
                 click.preventDefault();
-                let a = click.currentTarget;
+                let a = click.currentTarget
                 let href = a.getAttribute('href');
                 if(href!=='#'){
                     let element = document.querySelector(href);
-                    let elementTop = element.offsetTop;
-                    window.scrollTo(0,elementTop-80);
+
+                    let currentPostion = window.scrollY;
+                    let targetPosition = element.offsetTop-80;
+                    // 假设移动1px,需要3ms
+                    let t = Math.abs(targetPosition-currentPostion)*3;
+                    if(t>700){t=700}
+                    // tween js
+                    function animate(time) {
+                        requestAnimationFrame(animate);
+                        TWEEN.update(time);
+                    }
+                    requestAnimationFrame(animate);
+
+                    var coords = { y: currentPostion };
+                    var tween = new TWEEN.Tween(coords)
+                        .to({ y: targetPosition }, t)
+                        .easing(TWEEN.Easing.Back.InOut)
+                        .onUpdate(function() {
+                           window.scrollTo(0,coords.y)
+                        })
+                        .start();
                 }
             }
         }

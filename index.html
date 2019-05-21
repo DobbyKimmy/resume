@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>JRH Resume</title>
-    <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="./loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css">
+    <link rel="stylesheet" href="./main.css">
     <script src="//at.alicdn.com/t/font_1128654_mkrsfkjhwq7.js"></script>
     <style type="text/css">
         .icon {
@@ -164,120 +165,40 @@
     </section>
     <section special id="works" class="portfolio">
         <h2>作品集</h2>
-        <nav>
-            <ol class="clearfix">
-                <li id="portfolio1">所有</li>
-                <li id="portfolio2">原生JS &amp; CSS</li>
-                <li id="portfolio3">框架</li>
-            </ol>
-            <div id="portfolioBar" class="bar state-1">
-                <div class="inner-bar"></div>
+        <!--变成轮播-->
+        <div id="mySlides">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <img src="./projectImg/nav-demo.JPG" class="swiper-slide"/>
+                    <img src="./projectImg/canvas-demo.jpg" class="swiper-slide"/>
+                    <img src="./projectImg/slide-demo.JPG" class="swiper-slide"/>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+
+                <!-- 如果需要导航按钮 -->
+
+                <!-- 如果需要滚动条 -->
+                <!--<div class="swiper-scrollbar"></div>-->
             </div>
-        </nav>
-        <script>
-            portfolio1.onclick = function () {
-                portfolioBar.className = 'bar state-1'
-            }
-            portfolio2.onclick = function () {
-                portfolioBar.className = 'bar state-2'
-            }
-            portfolio3.onclick = function () {
-                portfolioBar.className = 'bar state-3'
-            }
-        </script>
-        <div class="works">
-            <div class="big">
-                <img src="./img/big.jpg" alt="big">
-            </div>
-            <div class="small1">
-                <img src="./img/small1.jpg" alt="small1">
-            </div>
-            <div class="small2">
-                <img src="./img/small2.jpg" alt="small2">
-            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
+
     </section>
+    <!--tween动画库-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.3.0/Tween.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/js/swiper.min.js"></script>
+    <!--模块化-->
+    <script src="./js/init-swiper.js"></script>
+    <script src="./js/auto-slide-up.js"></script>
+    <script src="./js/sticky-topbar.js"></script>
+    <script src="./js/smothly-naviagtion.js"></script>
     <script>
         // loading动画
         window.setTimeout(function () {
             loading.classList.remove('active')
         },1000)
-        // 让about在刚打开页面的时候就出现upSlide效果
-        window.setTimeout(f,1500);
-        var topNavBar = document.getElementById('topNavBar');
-        // upSlide
-        let specials = document.querySelectorAll('[special]');
-        for(let i=0;i<specials.length;i++){
-            specials[i].classList.add('upSlide');
-        }
-        window.onscroll = function () {
-            if(window.scrollY>0){
-                topNavBar.classList.add('active');
-            }else{
-                topNavBar.classList.remove('active');
-            }
-            f();
-        }
-       function f() {
-            let minIndex = 0
-            for(let i=1;i<specials.length;i++){
-                if(Math.abs(specials[minIndex].offsetTop-window.scrollY)>Math.abs(specials[i].offsetTop-window.scrollY)){
-                    minIndex = i;
-                }
-            }
-            // specials[minIndex]为当前屏幕"最近的元素"
-            specials[minIndex].classList.remove('upSlide');
-            let aTag = document.querySelector('a[href="#'+specials[minIndex].id+'"]');
-            let liTags = aTag.parentNode.parentNode.children;
-            for(let i=0;i<liTags.length;i++){
-                liTags[i].classList.remove('highlight');
-            }
-            aTag.parentNode.classList.add('highlight');
-        }
-        let liTags = document.querySelectorAll('nav>ul>li');
-        for(let i=0;i<liTags.length;i++){
-            liTags[i].onmouseenter = function (mouseEnter) {
-                let li = mouseEnter.currentTarget
-                li.classList.add('active');
-            }
-            liTags[i].onmouseleave = function (mouseLeave) {
-                let li = mouseLeave.currentTarget;
-                li.classList.remove('active');
-            }
-        }
-        let aTags = document.querySelectorAll('nav>ul>li>a');
-        for(let i=0;i<aTags.length;i++){
-            aTags[i].onclick = function (click) {
-                click.preventDefault();
-                let a = click.currentTarget
-                let href = a.getAttribute('href');
-                if(href!=='#'){
-                    let element = document.querySelector(href);
-
-                    let currentPostion = window.scrollY;
-                    let targetPosition = element.offsetTop-80;
-                    // 假设移动1px,需要3ms
-                    let t = Math.abs(targetPosition-currentPostion)*3;
-                    if(t>700){t=700}
-                    // tween js
-                    function animate(time) {
-                        requestAnimationFrame(animate);
-                        TWEEN.update(time);
-                    }
-                    requestAnimationFrame(animate);
-
-                    var coords = { y: currentPostion };
-                    var tween = new TWEEN.Tween(coords)
-                        .to({ y: targetPosition }, t)
-                        .easing(TWEEN.Easing.Back.InOut)
-                        .onUpdate(function() {
-                           window.scrollTo(0,coords.y)
-                        })
-                        .start();
-                }
-            }
-        }
     </script>
 </body>
 </html>

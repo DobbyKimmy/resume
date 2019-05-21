@@ -42,7 +42,7 @@ h1,h2,h3,h4,h5,h6{font-weight: normal;}
     /*盖住所有的面积按照比例缩放 background-size:cover*/
     background-size: cover;
 }
-.banner .mask{height: 515px;background-color: rgba(0,0,0,0.7);}
+.banner .mask{height: 515px;background-color: rgba(0,0,0,0.6);}
 .userCard{
     /*最大宽度：max-width最大不能超过这个宽度*/
     max-width: 940px;margin: 0 auto;background-color: #FFFFFF;}
@@ -80,9 +80,9 @@ h1,h2,h3,h4,h5,h6{font-weight: normal;}
 .progressBar{height: 5px;background-color: #FAEAEA;border-radius: 2px;box-sizing: border-box;overflow: hidden}
 .progressBar .progress{background-color: #E8676B;width: 70%;height: 5px;border-radius: 3px;transform: translateX(0);transition: 1s;}
 .skills.upSlide .progressBar .progress{transform: translateX(-100%);}
-.portfolio{max-width: 940px;margin-left: auto;margin-right: auto;margin-top: 60px;text-align: center;margin-bottom: 100px;}
+.portfolio{max-width: 940px;margin-left: auto;margin-right: auto;margin-top: 60px;text-align: center;margin-bottom: 100px;padding-bottom: 150px}
 .portfolio h2{text-align: center;font-size: 30px;line-height: 1.2;font-weight: 600;color: #3D4451;margin-bottom: 30px;}
-.portfolio nav{display: inline-block;}
+/*.portfolio nav{display: inline-block;}
 .portfolio nav ol{margin-bottom: 8px;}
 .portfolio nav ol li{margin-left: 50px;float: left;cursor: pointer;}
 .portfolio nav ol li:nth-child(1){margin-left: 0;}
@@ -90,10 +90,15 @@ h1,h2,h3,h4,h5,h6{font-weight: normal;}
 .portfolio .bar .inner-bar{height: 100%;background: #E8676B;border-radius: 3px;transition: all 0.5s;}
 .portfolio .bar.state-1>.inner-bar{margin-left: 0;width: 13%;}
 .portfolio .bar.state-2>.inner-bar{margin-left: 30%;width: 40%;}
-.portfolio .bar.state-3>.inner-bar{margin-left: 86%;width: 14%;}
+.portfolio .bar.state-3>.inner-bar{margin-left: 86%;width: 14%;}*/
 .works{position: relative;height: 576px;margin-top: 20px;}
 .big,.small1,.small2{position: absolute;}
 .small1{left: 644px;top: 0;}
 .small2{left: 644px;top: 298px;}
 [special].upSlide{transform: translateY(160px);}
 [special]{transition: all 0.4s;transform: translateY(0);}
+.portfolio .swiper-container {width: 600px;height: 400px;}
+.portfolio .swiper-button-prev,.swiper-button-next{margin-top: -70px;width: 64px;height: 64px;background-color: #FFFFFF;border-radius: 50%;}
+.portfolio .swiper-button-prev,.swiper-button-next:hover{cursor: pointer;}
+.portfolio .swiper-button-prev{left: 70px;}
+.portfolio .swiper-button-next{right: 70px;}
